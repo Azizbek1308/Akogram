@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Dwitter</title>
+</head>
+<body>
+    <a href="{% url 'Dwitter:dashboard' %} ">
+    <section class="hero is-small is-primary mb-4">
+        <div class="hero-body">
+            <h1 class="title is-1">Akogram</h1>
+            <p class="subtitle is-4">
+                Your tiny social network built with Django
+            </p>
+        </div>
+        <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"><ul>
+                    <div>
+                <div>
+                {% if user.is_authenticated%}
+                <a class="navbar-brand me-5" href="{% url 'logout'%}">Login out </a>
+                {%else%}
+                <a class="navbar-brand me-5" href="{% url 'login'%}">Login in</a>
+                <a class="navbar-brand me-5" href="{% url 'register'%}">Register </a>
+                {%endif%}
+                </div>
+        </div>
+    </section>
+
+
+    </a>
+     <div class="container">
+        <div class="columns">
+        {% block content %}
+            {% if user.is_authenticated%}
+            {%else%}
+                <h3>You are not logged in, Please login!!!</h3>
+            {%endif%}
+        {% endblock content %}
+        </div>
+     </div>
+</body>
+</html>
